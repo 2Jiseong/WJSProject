@@ -1,27 +1,28 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
-void insert(FILE *fp,char eng[10][30],char kor[10][30]);
+void insert(FILE *fp,char eng[1000][100],char kor[1000][100]);
 
 void main(int argc,char *argv[])
 {
-  char eng[10][30];
-  char kor[10][30];
-  FILE *fp = fopen("word.txt","r");
-  if(fp == NULL)
+  char eng[1000][100];
+  char kor[1000][100];
+
+  if(strcmp(argv[1],"insert") == 0)
   {
-	printf("error!");
-	return;
-  }
+     FILE *fp = fopen(argv[2],"r");
+     FILE *fp2 = fopen("newWords.txt","w");
+     if(fp == NULL)
+     {
+         printf("File open error!");
+         return;
+     }
 
-  insert(fp,eng,kor);
+     insert(fp,fp2,eng,kor);
+     fclose(fp);
+     fclose(fp2);
+   }
 
-  for(int i=0;i<5;i++)
-  {
-    printf("%s ",eng[i]);
-    printf("%s ",kor[i]);
-  }
-
-  fclose(fp);
   return;
 }
