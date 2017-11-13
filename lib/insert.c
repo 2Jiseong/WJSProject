@@ -1,17 +1,33 @@
 #include<stdio.h>
 #include<string.h>
-void insert(FILE *fp,char eng[1000][100],char kor[1000][100])
+#include<stdlib.h>
+
+#include "insert.h"
+
+typedef struct word{
+	char eng[100];
+        char kor[100];
+}word;
+
+void insert(FILE *fp,FILE *fp2)
 {
+   word word[1000];
    char buf[30];
    int idx = 0;
    while(fgets(buf,sizeof(buf),fp) != NULL)
    {
       char *ptr=strtok(buf," ");
-      strcpy(eng[idx],ptr);
+      strcpy(word[idx].eng,ptr);
       ptr = strtok(NULL," ");
-      strcpy(kor[idx],ptr);
+      strcpy(word[idx].kor,ptr);
       idx++;
    }
-
-   return; 
+   for(int i = 0;i<idx;i++)
+   {
+      fwrite(word[i].eng,sizeof(word[i].eng),1,fp2);
+      fwrite(" ",sizeof(char),1,fp2);
+      fwrite(word[i].kor,sizeof(word[i].kor),1,fp2);
+      fwrite("\n",sizeof(char),1,fp2);
+   }
+   return;
 }
