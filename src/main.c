@@ -23,6 +23,11 @@ void main(int argc,char *argv[])
      fclose(fp);
      fclose(fp2);
    }
+   if(strcmp(argv[1],"add") == 0)
+   {
+
+     //wj
+   }
 
   return;
 }
