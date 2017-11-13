@@ -2,24 +2,22 @@
 #include<stdlib.h>
 #include<string.h>
 
-void insert(FILE *fp,char eng[1000][100],char kor[1000][100]);
+void insert(FILE *fp,FILE *fp2);
 
 void main(int argc,char *argv[])
 {
-  char eng[1000][100];
-  char kor[1000][100];
 
   if(strcmp(argv[1],"insert") == 0)
   {
      FILE *fp = fopen(argv[2],"r");
-     FILE *fp2 = fopen("newWords.txt","w");
-     if(fp == NULL)
+     FILE *fp2 = fopen("words.txt","w");
+     if(fp == NULL || fp2 == NULL)
      {
          printf("File open error!");
          return;
      }
 
-     insert(fp,fp2,eng,kor);
+     insert(fp,fp2);
      fclose(fp);
      fclose(fp2);
    }
