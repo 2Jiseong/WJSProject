@@ -2,7 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 
-void insert(FILE *fp,FILE *fp2);
+void insert(FILE *fp);
+void addToWord(char *eng,char *kor);
 
 void main(int argc,char *argv[])
 {
@@ -10,22 +11,21 @@ void main(int argc,char *argv[])
   if(strcmp(argv[1],"insert") == 0)
   {
      FILE *fp = fopen(argv[2],"r");
-     FILE *fp2 = fopen("words.txt","w");
-     if(fp == NULL || fp2 == NULL)
+     if(fp == NULL)
      {
          printf("File open error!");
          return;
      }
 
-     insert(fp,fp2);
+     insert(fp);
      fclose(fp);
-     fclose(fp2);
    }
    if(strcmp(argv[1],"add") == 0)
    {
-
-     //wj
+     addToWord(argv[2],argv[3]);
    }
 
   return;
 }
+
+
