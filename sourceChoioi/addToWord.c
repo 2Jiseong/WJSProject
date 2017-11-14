@@ -4,24 +4,46 @@
 
 void addToWord()
 {
-	FILE *f = fopen("word.txt", "w");
+	FILE *of = fopen("word.txt", "r");
 	int level = 0;
-	word add_w;
-	scanf("%s %s", add_w.eng, add_w.kor);
-	level = strlen(add_w.eng);
+	int idx = 0;
+	word add_w[100];
+
+	
+	while (1)
+	{
+		fscanf(of,"%s %s %d", &add_w[idx].eng, &add_w[idx].kor, &add_w[idx].level);
+		if (add_w[idx].level <1 || add_w[idx].level > 3)
+		{
+			fclose(of);
+			break;
+		}
+		idx++;
+	}
+	
+	FILE *pf = fopen("word.txt", "w");
+	scanf("%s %s", &add_w[idx].eng, &add_w[idx].kor);
+	level = strlen(add_w[idx].eng);
+
 	if (level < 5)
 	{
-		add_w.level = 1;
+		add_w[idx].level = 1;
 	}
 	else if (level >= 5 && level < 10)
 	{
-		add_w.level = 2;
+		add_w[idx].level = 2;
 	}
 	else if (level>=10)
 	{
-		add_w.level = 3;
+		add_w[idx].level = 3;
 	}
-	fprintf(f,"%s %s %d\n", add_w.eng, add_w.kor, add_w.level);
-	fclose(f);
+
+
+	for (int i = 0; i < idx + 1; i++)
+	{
+		fprintf(pf, "%s %s %d\n", add_w[i].eng, add_w[i].kor, add_w[i].level);
+	}
+	fclose(pf);
+	
 	
 }
