@@ -9,8 +9,9 @@ typedef struct word{
         char kor[100];
 }word;
 
-void insert(FILE *fp,FILE *fp2)
+void insert(FILE *fp)
 {
+   FILE *fp2 = fopen("words.txt","w");
    word word[1000];
    char buf[30];
    int idx = 0;
@@ -29,5 +30,6 @@ void insert(FILE *fp,FILE *fp2)
       fwrite(word[i].kor,sizeof(word[i].kor),1,fp2);
       fwrite("\n",sizeof(char),1,fp2);
    }
+   fclose(fp2);
    return;
 }
