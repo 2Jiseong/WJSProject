@@ -2,6 +2,12 @@
 #include <string.h>
 #include "addToWord.h"
 
+typedef struct word{
+	char eng[15];
+	char kor[10];
+	int level;
+}word;
+
 void addToWord()
 {
 	FILE *of = fopen("word.txt", "r");
