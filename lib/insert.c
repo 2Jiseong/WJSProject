@@ -11,7 +11,7 @@ typedef struct word{
 
 void insert(FILE *fp)
 {
-   FILE *fp2 = fopen("words.txt","w");
+   FILE *fp2 = fopen("words.txt","a");
    word word[1000];
    char buf[30];
    int idx = 0;
@@ -28,7 +28,6 @@ void insert(FILE *fp)
       fwrite(word[i].eng,sizeof(word[i].eng),1,fp2);
       fwrite(" ",sizeof(char),1,fp2);
       fwrite(word[i].kor,sizeof(word[i].kor),1,fp2);
-      fwrite("\n",sizeof(char),1,fp2);
    }
    fclose(fp2);
    return;

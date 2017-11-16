@@ -6,7 +6,7 @@
 #include "word.h"
 void addToWord(char *eng,char *kor)
 { 
-        FILE *fp = fopen("words.txt", "wt");
+        FILE *fp = fopen("words.txt", "a");
         fwrite(eng,strlen(eng),1,fp);
         fwrite(" ",sizeof(char),1,fp);
         fwrite(kor,strlen(kor),1,fp);
