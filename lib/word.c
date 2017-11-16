@@ -2,15 +2,29 @@
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <wchar.h>
 #include "word.h"
 void addToWord(char *eng,char *kor)
 { 
-        FILE *fp = fopen("words.txt", "a");
-        fwrite(eng,strlen(eng),1,fp);
-        fwrite(" ",sizeof(char),1,fp);
-        fwrite(kor,strlen(kor),1,fp);
-        fwrite("\n",sizeof(char),1,fp);
+        int level = 0;
+        FILE *fp = fopen("ouputwords.txt", "a");
+        
+        //level check
+        level = strlen(eng);
+        if (level < 5)
+        {
+                level = 1;
+        }
+        else if (level >= 5 && level < 10)
+        {
+                level = 2;
+        }
+        else if (level>=10)
+        {
+                level = 3;
+        }
+        
+        //file write
+        fprintf(fp,"%s %s %d \n",eng,kor,level);
         fclose(fp);
 }
 

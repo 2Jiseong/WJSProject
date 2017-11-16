@@ -11,23 +11,35 @@ typedef struct word{
 
 void insert(FILE *fp)
 {
-   FILE *fp2 = fopen("words.txt","a");
+   FILE *fp2 = fopen("outputwords.txt","a");
    word word[1000];
-   char buf[30];
-   int idx = 0;
-   while(fgets(buf,sizeof(buf),fp) != NULL)
+   char buf[100];
+   int idx=0;
+   int level;
+   //file read
+   while(feof(fp) == 0)
    {
-      char *ptr=strtok(buf," ");
-      strcpy(word[idx].eng,ptr);
-      ptr = strtok(NULL," ");
-      strcpy(word[idx].kor,ptr);
-      idx++;
+     fscanf(fp,"%s %s\n",word[idx].eng,word[idx].kor);
+     idx++;
    }
+   //level check
    for(int i = 0;i<idx;i++)
    {
-      fwrite(word[i].eng,sizeof(word[i].eng),1,fp2);
-      fwrite(" ",sizeof(char),1,fp2);
-      fwrite(word[i].kor,sizeof(word[i].kor),1,fp2);
+    level = strlen(word[i].eng);
+    if (level < 5)
+    {
+        level = 1;
+    }
+    else if (level >= 5 && level < 10)
+    {
+        level = 2;
+    }
+    else if (level>=10)
+    {
+        level = 3;
+    }
+    //file write
+    fprintf(fp2,"%s %s %d\n",word[i].eng, word[i].kor,level);
    }
    fclose(fp2);
    return;
