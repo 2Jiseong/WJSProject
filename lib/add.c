@@ -2,7 +2,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include "word.h"
+#include "add.h"
 void addToWord(char *eng,char *kor)
 { 
         int level = 0;
