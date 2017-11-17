@@ -48,4 +48,76 @@ void examToWord()
 			}
 		}
 	}
+
+	printf("1 :: easy   2 :: normal   3 :: hard  4 :: all\n");
+	scanf("%d", &step);
+
+	switch (step)
+	{
+		case 1:
+		{
+			char ans[15];
+			int c_cnt = 0;
+			for (int i = 0; i < e_idx; i++)
+			{
+				printf("%s ", add_w[easy_arr[i]].eng);
+				scanf("%s", ans);
+				if (strcmp(add_w[easy_arr[i]].kor, ans) == 0)
+				{
+					c_cnt++;
+				}
+				printf("answer_rate :: %d/%d\n", c_cnt, i + 1);
+			}
+			break;
+		}
+		case 2:
+		{
+			char ans[15];
+			int c_cnt = 0;
+			for (int i = 0; i < n_idx; i++)
+			{
+				printf("%s ", add_w[normal_arr[i]].eng);
+				scanf("%s", ans);
+				if (strcmp(add_w[normal_arr[i]].kor, ans) == 0)
+				{
+					c_cnt++;
+				}
+				printf("answer_rate :: %d/%d\n", c_cnt, i + 1);
+			}
+			break;
+		}
+		case 3:
+		{
+			char ans[15];
+			int c_cnt = 0;
+			for (int i = 0; i < h_idx; i++)
+			{
+				printf("%s ", add_w[hard_arr[i]].eng);
+				scanf("%s", ans);
+				if (strcmp(add_w[hard_arr[i]].kor, ans) == 0)
+				{
+					c_cnt++;
+				}
+				printf("answer_rate :: %d/%d\n", c_cnt, i + 1);
+			}
+			break;
+		}
+		case 4:
+		{
+			char ans[15];
+			int c_cnt = 0;
+			for (int i = 0; i < idx; i++)
+			{
+				printf("%s ", add_w[all_arr[i]].eng);
+				scanf("%s", ans);
+				if (strcmp(add_w[all_arr[i]].kor, ans) == 0)
+				{
+					c_cnt++;
+				}
+				printf("answer_rate :: %d/%d\n", c_cnt, i+1);
+			}
+			break;
+		}
+	}
+	printf("finish test!\n");
 }
