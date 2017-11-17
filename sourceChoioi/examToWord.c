@@ -35,4 +35,17 @@ void examToWord()
 		}
 		idx++;
 	}
+        srand(time(0));
+	for (int i = 0; i < idx; i++)
+	{
+		all_arr[i] = rand() % idx;
+		for (int j = 0; j < i; j++)
+		{
+			if (all_arr[i] == all_arr[j])
+			{
+				i--;
+				break;
+			}
+		}
+	}
 }
