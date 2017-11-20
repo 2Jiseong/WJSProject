@@ -4,6 +4,7 @@
 
 void insert(FILE *fp);
 void addToWord(char *eng,char *kor);
+void show(FILE *fp,char *command);
 
 void main(int argc,char *argv[])
 {
@@ -30,14 +31,8 @@ void main(int argc,char *argv[])
    }
    if(strcmp(argv[1],"show") == 0)
    {
-      if(strcmp(argv[2],"easy")        //1
-      else if(strcmp(argv[2],"normal") //2
-      else if(strcmp(argv[2],"hard")   //3
-      else if(strcmp(argv[2],"wrong")  // after testing, show wrong word
-      else
-      {
-      //error
-      } 
+     FILE *fp = fopen("outputwords.txt","r");
+     show(fp,argv[2]);
    }
    if(strcmp(argv[1],"test")==0)
    {
