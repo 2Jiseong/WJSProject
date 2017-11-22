@@ -6,7 +6,7 @@
 void addToWord(char *eng,char *kor)
 { 
         int level = 0;
-        FILE *fp = fopen("ouputwords.txt", "a");
+        FILE *fp = fopen("outputwords.txt", "a");
         
         //level check
         level = strlen(eng);
