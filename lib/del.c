@@ -1,51 +1,39 @@
 #include <stdio.h>
 #include <string.h>
 #include "del.h"
-
 typedef struct word{
-        char eng[15];
-        char kor[10];
-        int level;
+	char eng[30];
+	char kor[30];
+	int level;
 }word;
-
-void delToWord(char eng[100])
+void delToWord(char *eng)
 {
-        FILE *fp = fopen("words.txt", "r");
         word words[100];
-        char *rmEng;
-        int level = 0;
+        int delIdx = 0;
         int idx = 0;
-        rmEng = strtok(eng," ");
 
-        while (1)
+        FILE *fp = fopen("outputwords.txt","r");
+        while (feof(fp)==0)
         {
-                fscanf(fp, "%s %s %d", &words[idx].eng, &words[idx].kor, &words[idx].level);
-                if (words[idx].level <1 || words[idx].level > 3)
-                {
-                        fclose(fp);
-                        break;
-                }
-                if (strcmp(words[idx].eng, rmEng) == 0)
-                {
-                        strcpy(words[idx].eng, " ");
-                        strcpy(words[idx].kor, " ");
-                        words[idx].level = 0;
-                }
-                idx++;
+             fscanf(fp, "%s %s %d\n", words[idx].eng,words[idx].kor,&words[idx].level);
+             if(strcmp(eng,words[idx].eng) == 0)
+             {
+	       delIdx = idx;
+               break;
+             }
+	     idx++;
         }
+	fclose(fp);
 
-        FILE *fp2 = fopen("words.txt", "w");
-        for (int i = 0; i < idx ; i++)
+        FILE *fp2 = fopen("outputwords.txt","w");
+	fprintf(fp,"%d",'\0');
+        for(int i = 0;i<idx;i++)
         {
-                if (add_w[i].level == 0)
-                {
-
-                }
-                else
-                {
-                        fprintf(pf, "%s %s %d\n", add_w[i].eng, add_w[i].kor, add_w[i].level);
-                }
+          if(delIdx==i){
+          continue;
+          }
+          fprintf(fp,"%s %s %d \n",words[i].eng,words[i].kor,words[i].level);
         }
-        fclose(pf);
+        fclose(fp2);
 }
 
