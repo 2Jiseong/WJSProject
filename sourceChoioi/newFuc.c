@@ -1,16 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int Com(const void* X, const void* Y)
-{
-	int x = *((int*)X);
-	int y = *((int*)Y);
-
-	if (x > y) return 1;
-	if (x < y) return -1;
-	if (x == y) return 0;
-}
-
 int main()
 {
 	int N, M;
@@ -30,7 +20,5 @@ int main()
 	{
 		scanf("%d", &arr2[i]);
 	}
-	qsort(arr1, N, sizeof(int), Com);
-
 
 }
