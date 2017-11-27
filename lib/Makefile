@@ -1,5 +1,5 @@
 INCLUDE = /home/ljs/Emb_sw/project/WJSProject/include
-OBJECT = insert.o add.o show.o del.o
+OBJECT = insert.o add.o show.o del.o test.o
 OUTPUT = libmyfuncs.a
 .PHONY = clean
 
@@ -16,6 +16,9 @@ del.o : del.c
 
 show.o : show.c
 	gcc -c -I$(INCLUDE) show.c -o show.o
+
+test.o : test.c
+	gcc -c -I$(INCLUDE) test.c -o test.o
 
 clean:
 	rm *.o $(OUTPUT)

@@ -6,6 +6,7 @@ void insert(FILE *fp);
 void addToWord(char *eng,char *kor);
 void show(FILE *fp,char *command);
 void delToWord(char *eng);
+void test(FILE *fp,char *command);
 
 void main(int argc,char *argv[])
 {
@@ -15,7 +16,7 @@ void main(int argc,char *argv[])
      FILE *fp = fopen(argv[2],"r");
      if(fp == NULL)
      {
-         printf("File open error!");
+         printf("File open error!\n");
          return;
      }
      insert(fp);
@@ -34,7 +35,7 @@ void main(int argc,char *argv[])
      FILE *fp = fopen("outputwords.txt","r");
      if(fp == NULL)
      {
-         printf("File open error!");
+         printf("File open error!\n");
          return;
      }
      show(fp,argv[2]);
@@ -42,7 +43,13 @@ void main(int argc,char *argv[])
    }
    if(strcmp(argv[1],"test")==0)
    {
-      //test
+      FILE *fp = fopen("outputwords.txt","r");
+      if(fp == NULL)
+      {
+         printf("File open error!\n");
+      }
+      test(fp,argv[2]);
+      fclose(fp);
    }
    
   return;
