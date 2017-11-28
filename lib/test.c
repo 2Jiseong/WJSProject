@@ -20,10 +20,12 @@ void test(FILE *fp,char *command)
 
         while (feof(fp) == 0)
         {
-                fscanf(fp, "%s %s %d", words[idx].eng, words[idx].kor, &words[idx].level);
-		idx++;
+	  if(command == 0)
+	  {
+            fscanf(fp, "%s %s %d", words[idx].eng, words[idx].kor, &words[idx].level);
+   	    idx++;
+  	  }
         }
-	
         for (int i = 0; i < idx; i++)
         {
                 all_arr[i] = rand() % idx;
