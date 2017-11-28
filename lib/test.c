@@ -49,6 +49,14 @@ void test(FILE *fp,char *command)
 	//난수 발생
 	srand(time(0));
   	for (int i = 0; i < idx; i++)
+	{
+	  if(command == 0)
+	  {
+            fscanf(fp, "%s %s %d", words[idx].eng, words[idx].kor, &words[idx].level);
+   	    idx++;
+  	  }
+        }
+        for (int i = 0; i < idx; i++)
         {
                 all_arr[i] = rand() % idx;
                 for (int j = 0; j < i; j++)
