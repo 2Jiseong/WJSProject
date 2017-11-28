@@ -6,6 +6,7 @@ typedef struct word{
 	char kor[30];
 	int level;
 }word;
+
 void delToWord(char *eng)
 {
         word words[100];
@@ -19,20 +20,20 @@ void delToWord(char *eng)
              if(strcmp(eng,words[idx].eng) == 0)
              {
 	       delIdx = idx;
-               break;
              }
 	     idx++;
         }
 	fclose(fp);
 
+	remove("outputwords.txt");
         FILE *fp2 = fopen("outputwords.txt","w");
-	fprintf(fp,"%d",'\0');
+	// null을 넣어버리면 파일이 전부 삭제 되기 때문에, 파일 삭제 후 재생성
         for(int i = 0;i<idx;i++)
         {
           if(delIdx==i){
           continue;
           }
-          fprintf(fp,"%s %s %d \n",words[i].eng,words[i].kor,words[i].level);
+          fprintf(fp2,"%s %s %d\n",words[i].eng,words[i].kor,words[i].level);
         }
         fclose(fp2);
 }
