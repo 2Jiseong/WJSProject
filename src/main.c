@@ -7,6 +7,7 @@ void addToWord(char *eng,char *kor);
 void show(FILE *fp,char *command);
 void delToWord(char *eng);
 void test(FILE *fp,char *command);
+void help();
 
 void main(int argc,char *argv[])
 {
@@ -50,6 +51,10 @@ void main(int argc,char *argv[])
       }
       test(fp,argv[2]);
       fclose(fp);
+   }
+   if(strcmp(argv[1],"help")==0)
+   {
+     help();
    }
    
   return;
