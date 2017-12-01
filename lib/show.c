@@ -15,14 +15,22 @@ int compare(const void *A,const void *B)
    word *b = (word*)B;
    return (strcmp(a->eng,b->eng));
 }
+int compare2(const void *A,const void *B)
+{
+   word *a = (word*)A;
+   word *b = (word*)B;
+   if(a->level > b->level) {return -1;}
+   else if(a->level == b->level) {return 0;}
+   else	{return 1;}
+}
 
-void show(FILE *fp, char *option)
+void show(FILE *fp ,char *option)
 {
    word words[1000];
    word easy[1000];
    word normal[1000];
    word hard[1000];
-
+   word wrongwords[1000];
    char eng[50];
    char kor[50];
    int level = 0;
@@ -95,7 +103,29 @@ void show(FILE *fp, char *option)
        printf("%s %s\n",hard[i].eng,hard[i].kor);
      }
    }
-   else
+   else if(strcmp(option,"wrongwords") == 0)
+   {
+    FILE *fp2 = fopen("wrongwords.txt","r");
+    if(fp2 == NULL)
+    {
+       printf("틀린 단어가 없습니다.\n");
+       return;
+    }
+    while(feof(fp2)==0)
+    {
+	fscanf(fp2,"%s %s %d\n",eng,kor,&level);
+	strcpy(wrongwords[idx].eng,eng);
+	strcpy(wrongwords[idx].kor,kor);
+        wrongwords[idx].level = level;
+	idx++;
+    }
+    qsort(wrongwords,idx,sizeof(word),compare2);
+    for(int i = 0;i<idx;i++)
+    {
+      printf("%s %s 틀린 횟수:%d\n",wrongwords[i].eng,wrongwords[i].kor,wrongwords[i].level);
+    }
+   }
+  else
    {
      printf("'option' is error\n");
    }
