@@ -12,6 +12,13 @@ typedef struct word{
 void insert(FILE *fp)
 {
    FILE *fp2 = fopen("outputwords.txt","a");
+   if(fp2 == 0)
+   {
+     printf("Output File open error!");
+     exit(0);
+   }
+
+
    word word[1000];
    char buf[100];
    int idx=0;

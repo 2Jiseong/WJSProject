@@ -9,11 +9,10 @@ typedef struct word{
 
 void delToWord(char *eng)
 {
+	FILE *fp = fopen("outputwords.txt","r");
         word words[100];
         int delIdx = 0;
         int idx = 0;
-
-        FILE *fp = fopen("outputwords.txt","r");
         while (feof(fp)==0)
         {
              fscanf(fp, "%s %s %d\n", words[idx].eng,words[idx].kor,&words[idx].level);
@@ -23,11 +22,10 @@ void delToWord(char *eng)
              }
 	     idx++;
         }
-	fclose(fp);
-
 	remove("outputwords.txt");
+ 	fclose(fp);
         FILE *fp2 = fopen("outputwords.txt","w");
-	// null을 넣어버리면 파일이 전부 삭제 되기 때문에, 파일 삭제 후 재생성
+        // null을 넣어버리면 파일이 전부 삭제 되기 때문에, 파일 삭제 후 재생성
         for(int i = 0;i<idx;i++)
         {
           if(delIdx==i){
